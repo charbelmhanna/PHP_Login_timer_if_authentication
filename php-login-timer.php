@@ -34,7 +34,10 @@ if(isset($_POST['login'])){
 
 if(!isset($_SESSION['timer'])){
 
-	// HERE PUT YOUR DB QUERY TO VERIFY USER 
+    // HERE PUT YOUR DB QUERY TO VERIFY USER 
+    // Only an example
+    $user = $db->verifyUser($variable);
+
 
 	if ($user){
 		$_SESSION['users']        = $user;
@@ -53,9 +56,9 @@ if(!isset($_SESSION['timer'])){
 		}
 	} // else if user not validated 
 }else{
-	$time = time();
-	$remaining = $time - $_SESSION['timer'];
-	$remain = 300 - $remaining ;
+	$time       = time();
+	$remaining  = $time - $_SESSION['timer'];
+	$remain     = 300 - $remaining ;
 	unset($_SESSION['attempts']);
 	$_SESSION['validation']	  	  = $ipaddress . ' is locked for a period of '. (round($remain / 60)) . ' ! please try again later';
 	header('Location: index.php');
